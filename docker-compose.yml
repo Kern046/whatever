@@ -1,0 +1,43 @@
+version: '3.5'
+
+networks:
+  api:
+    driver: bridge
+
+services:
+  app:
+    container_name: battle_reenactor_app
+    command: "php-fpm"
+    build: docker/phpfpm
+    working_dir: /srv/app
+    env_file:
+      - battle-reenactor.env
+    networks:
+      - api
+    volumes:
+      - '.:/srv/app'
+
+  nginx:
+    container_name: battle_reenactor_nginx
+    build: docker/nginx
+    env_file:
+      - battle-reenactor.env
+    networks:
+      - api
+    extra_hosts:
+      - 'local.battle-reenactor.com:127.0.0.1'
+    ports:
+      - '8080:80'
+    volumes:
+      - '.:/srv/app'
+      - './var/log/nginx:/var/log/nginx'
+
+  mysql:
+    container_name: battle_reenactor_mysql
+    image: mysql:8
+    env_file:
+      - battle-reenactor.env
+    volumes:
+      - "./var/data:/var/lib/mysql"
+    networks:
+      - api
