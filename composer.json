@@ -19,6 +19,13 @@
         "symfony/yaml": "5.1.*"
     },
     "require-dev": {
+        "behat/behat": "^3.8",
+        "doctrine/data-fixtures": "^1.4",
+        "friends-of-behat/mink-browserkit-driver": "^1.4",
+        "friends-of-behat/mink-extension": "^2.4",
+        "friends-of-behat/page-object-extension": "^0.3.2",
+        "friends-of-behat/symfony-extension": "^2.1",
+        "phpunit/phpunit": "^9.4"
     },
     "config": {
         "optimize-autoloader": true,

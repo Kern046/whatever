@@ -47,3 +47,5 @@ services:
     image: blackfire/blackfire
     env_file:
       - battle-reenactor.env
+    networks:
+      - app
