@@ -1,7 +1,7 @@
 version: '3.5'
 
 networks:
-  api:
+  app:
     driver: bridge
 
 services:
@@ -13,7 +13,7 @@ services:
     env_file:
       - battle-reenactor.env
     networks:
-      - api
+      - app
     volumes:
       - '.:/srv/app'
 
@@ -23,7 +23,7 @@ services:
     env_file:
       - battle-reenactor.env
     networks:
-      - api
+      - app
     extra_hosts:
       - 'local.battle-reenactor.com:127.0.0.1'
     ports:
@@ -40,4 +40,10 @@ services:
     volumes:
       - "./var/data:/var/lib/mysql"
     networks:
-      - api
+      - app
+
+  blackfire:
+    container_name: battle_reenactor_blackfire
+    image: blackfire/blackfire
+    env_file:
+      - battle-reenactor.env
