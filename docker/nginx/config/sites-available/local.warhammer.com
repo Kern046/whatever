@@ -1,10 +1,10 @@
 server {
   listen 80;
 
-  server_name local.battle-reenactor.com;
+  server_name local.warhammer.com;
 
-  access_log /var/log/nginx/battle_reenactor.access.log;
-  error_log /var/log/nginx/battle_reenactor.error.log;
+  access_log /var/log/nginx/warhammer.access.log;
+  error_log /var/log/nginx/warhammer.error.log;
 
   merge_slashes on;
 
@@ -16,7 +16,7 @@ server {
   }
 
   location ~ ^/index\.php(/|$) {
-      fastcgi_pass battle_reenactor_app:9000;
+      fastcgi_pass warhammer_app:9000;
       fastcgi_split_path_info ^(.+\.php)(/.*)$;
       include fastcgi_params;
       fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;

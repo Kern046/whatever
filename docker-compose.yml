@@ -6,26 +6,26 @@ networks:
 
 services:
   app:
-    container_name: battle_reenactor_app
+    container_name: warhammer_app
     command: "php-fpm"
     build: docker/phpfpm
     working_dir: /srv/app
     env_file:
-      - battle-reenactor.env
+      - warhammer.env
     networks:
       - app
     volumes:
       - '.:/srv/app'
 
   nginx:
-    container_name: battle_reenactor_nginx
+    container_name: warhammer_nginx
     build: docker/nginx
     env_file:
-      - battle-reenactor.env
+      - warhammer.env
     networks:
       - app
     extra_hosts:
-      - 'local.battle-reenactor.com:127.0.0.1'
+      - 'local.france-eco.fr:127.0.0.1'
     ports:
       - '8080:80'
     volumes:
@@ -33,19 +33,19 @@ services:
       - './var/log/nginx:/var/log/nginx'
 
   mysql:
-    container_name: battle_reenactor_mysql
+    container_name: warhammer_mysql
     image: mysql:8
     env_file:
-      - battle-reenactor.env
+      - warhammer.env
     volumes:
       - "./var/data:/var/lib/mysql"
     networks:
       - app
 
   blackfire:
-    container_name: battle_reenactor_blackfire
+    container_name: warhammer_blackfire
     image: blackfire/blackfire
     env_file:
-      - battle-reenactor.env
+      - warhammer.env
     networks:
       - app
