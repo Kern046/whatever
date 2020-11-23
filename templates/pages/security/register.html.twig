@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        {{ form_start(form) }}
+
+        <div>
+            {{ form_label(form.username) }}
+            {{ form_widget(form.username) }}
+        </div>
+
+        <div>
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+
+        <div>
+            {{ form_label(form.password) }}
+            {{ form_widget(form.password) }}
+        </div>
+
+        <button type="submit">
+            {{ 'app.security.register.submit'|trans }}
+        </button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock body %}
